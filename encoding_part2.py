@@ -22,6 +22,9 @@ def encoding2():
 
     df_3 = ohe.transform(df_2.fillna('Missing')).toarray()
     new_dataframe = pd.DataFrame(df_3, columns=ohe.get_feature_names())
+
+    
     return new_dataframe
+
 
 print(encoding2())
