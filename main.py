@@ -4,6 +4,7 @@ import csv
 from sklearn.preprocessing import OrdinalEncoder
 
 from prepare_data import load_data
+from model.random_forest import random_forest_classification
 
 def main():
     df = load_data()
@@ -70,12 +71,16 @@ def main():
 
     bigdata = pd.merge(pen_df,df3, on='race')
 
-    print(bigdata.head(50))
+    print(bigdata.head(30))
 
-    index2 = bigdata.index
-    number_of_rows2 = len(index2)
+    final_df = bigdata.drop(['race'], axis=1)
+    print(final_df.head(40))
+
+    index = bigdata.index
+    number_of_rows2 = len(index)
     print(number_of_rows2)
 
+    random_forest_classification(final_df)
 
 
 if __name__ == "__main__":
