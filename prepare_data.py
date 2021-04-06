@@ -12,8 +12,15 @@ def load_data():
     df: DataFrame
     """
     df = pd.read_csv("data/income_evaluation.csv", sep=r'\s*,\s*',
-                     header=0, encoding='ascii', engine='python')
+                     header=0, encoding='ascii', engine='python', na_values="?")
     df = df.drop(['fnlwgt', 'education', 'occupation', 'capital-gain', 'capital-loss'], axis=1)
+
+    bins = [15, 24, 55]
+    names = ['15-24', '25-54', '55+']
+    d = dict(enumerate(names, 1))
+    df['AgeRange'] = np.vectorize(d.get)(np.digitize(df['age'], bins))
+    df = df.drop(['age'], axis=1)
+
     return df
 
 
@@ -48,4 +55,5 @@ def divide_dataset():
     return np.split(reduced_dataset,
                     [int(train_portion * len(reduced_dataset)),
                      int((train_portion + test_portion) * len(reduced_dataset))])
+
 
