@@ -11,6 +11,9 @@ def encoding2():
     # dropping unused columns
     df = df.drop(['fnlwgt', 'education', 'occupation', 'capital-gain', 'capital-loss'], axis=1)
 
+    education_data = df['education-num']
+    hours_data = df['hours-per-week']
+
     # using only categorical data columns
     data_cat = df[['workclass', 'marital-status', 'relationship', 'race', 'sex', 'native-country', 'income']]
     pd.get_dummies(data_cat, dummy_na=True, drop_first=True)
@@ -25,8 +28,13 @@ def encoding2():
     df_3 = ohe.transform(df_2.fillna('Missing')).toarray()
     new_dataframe = pd.DataFrame(df_3, columns=ohe.get_feature_names())
 
+    merged_ed_dataframe = new_dataframe.join(education_data)
+    merged_hours_dataframe = merged_ed_dataframe.join(hours_data)
+
+
     # displaying the datafram on function call
-    return new_dataframe
+    return merged_hours_dataframe #, merged_hours_dataframe.to_csv(r'/Users/jacoblapkin/Documents/GitHub/FOMLADS Name.csv', index = False)
+                                  # uncomment the above '#' and change the path to where you want the csv file to go if you want one.
 
 
 print(encoding2())
