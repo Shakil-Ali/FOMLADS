@@ -11,6 +11,7 @@ def encoding2():
     # dropping unused columns
     df = df.drop(['fnlwgt', 'education', 'occupation', 'capital-gain', 'capital-loss'], axis=1)
 
+    # extract the numerical variables for later use
     education_data = df['education-num']
     hours_data = df['hours-per-week']
 
@@ -28,6 +29,7 @@ def encoding2():
     df_3 = ohe.transform(df_2.fillna('Missing')).toarray()
     new_dataframe = pd.DataFrame(df_3, columns=ohe.get_feature_names())
 
+    # add the numerical variables back in
     merged_ed_dataframe = new_dataframe.join(education_data)
     merged_hours_dataframe = merged_ed_dataframe.join(hours_data)
 
