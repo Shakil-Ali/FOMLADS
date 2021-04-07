@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 
 
 def random_forest_classification(df):
-    X = df[['marital-status_code','relationship_code','race_code', 'sex_code', 'native-country_code', 'education-num', 'hours-per-week']]
-    y = df['AgeRange_code']
+    X = df[['x3_Black', 'x3_Other', 'x3_White']]
+    y = df['AgeRange']
 
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=0)
 

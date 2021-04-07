@@ -93,6 +93,7 @@ def main():
     number_of_rows2 = len(index)
     print(number_of_rows2)
 
+    random_forest_classification(df)
 
 if __name__ == "__main__":
    main()
