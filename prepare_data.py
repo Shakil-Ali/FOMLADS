@@ -4,17 +4,12 @@ import pandas as pd
 import numpy as np
 
 
-def prepare_data():
-    raw_data = load_wine()
-
-    features = pd.DataFrame(data=raw_data['data'], columns=raw_data['feature_names'])
-    data = features
-    data['target'] = raw_data['target']
-    data['class'] = data['target'].map(lambda ind: raw_data['target_names'][ind])
+def prepare_data(file):
+    data = pd.read_csv(file)
     return data
 
 
-def divide_dataset():
+def divide_dataset(df):
     """
     After reduce and shuffle the dataset we have to divide to three datasets: train_portion, valid_portion, test_portion
     train_portion = 0.6 of dataset
@@ -26,7 +21,7 @@ def divide_dataset():
     3 dataframes: train,validate, test
 
     """
-    df = prepare_data()
+
     df = shuffle(df, random_state=42)
     train_portion = .6
     test_portion = .2
@@ -35,6 +30,3 @@ def divide_dataset():
                      int((train_portion + test_portion) * len(df))])
 
 
-print(prepare_data())
-
-print(divide_dataset())
