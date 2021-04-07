@@ -1,33 +1,17 @@
-import pandas as pd
+from sklearn.datasets import load_wine
 from sklearn.utils import shuffle
+import pandas as pd
 import numpy as np
 
 
-def load_data():
-    """
-    Function that loads data from csv file to dataframe. We are using header=0 to specify that the first row is heade
-    We are dropping using drop function the unnecessary columns and return the updated dataframe
-    Returns
-    -------
-    df: DataFrame
-    """
-    df = pd.read_csv("data/income_evaluation.csv", sep=r'\s*,\s*',
-                     header=0, encoding='ascii', engine='python')
-    df = df.drop(['fnlwgt', 'education', 'occupation', 'capital-gain', 'capital-loss'], axis=1)
-    return df
+def prepare_data():
+    raw_data = load_wine()
 
-
-def reduce_dataset():
-    """
-    After loading the data we have to shuffle them so we can reduce the data size to 10000 instead of 32561.
-    We reducing the data to improve performance.
-    Returns
-    -------
-    df: DataFrame
-    """
-    df = load_data()
-    df = shuffle(df, random_state=42)
-    return df.iloc[22561:]
+    features = pd.DataFrame(data=raw_data['data'], columns=raw_data['feature_names'])
+    data = features
+    data['target'] = raw_data['target']
+    data['class'] = data['target'].map(lambda ind: raw_data['target_names'][ind])
+    return data
 
 
 def divide_dataset():
@@ -42,10 +26,15 @@ def divide_dataset():
     3 dataframes: train,validate, test
 
     """
-    reduced_dataset = reduce_dataset()
+    df = prepare_data()
+    df = shuffle(df, random_state=42)
     train_portion = .6
     test_portion = .2
-    return np.split(reduced_dataset,
-                    [int(train_portion * len(reduced_dataset)),
-                     int((train_portion + test_portion) * len(reduced_dataset))])
+    return np.split(df,
+                    [int(train_portion * len(df)),
+                     int((train_portion + test_portion) * len(df))])
 
+
+print(prepare_data())
+
+print(divide_dataset())
