@@ -1,15 +1,48 @@
 import pandas as pd
+import numpy as np 
+import math
+
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn import metrics
-import seaborn as sn
-import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import f1_score
+from sklearn.metrics import accuracy_score
 
-def random_forest_classifier(df):
-    X = df[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
-            'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
-            'proline']]
-    y = df['class']
+def knnWithSklearn():
+    df = pd.read_csv('FOMLADS Name.csv')
 
-    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=0)
+    # seperating row
+    X = df.iloc[:,0:14]
+    y = df.iloc[:,14]
+
+    # splitting data
+    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.4)
+
+    # scaling data
+    sc_X = StandardScaler()
+    X_train = sc_X.fit_transform(X_train)
+    X_test = sc_X.transform(X_test)
+
+    # getting k
+    k = math.ceil((math.sqrt(len(y_test))))
+
+    #classify
+    classifier = KNeighborsClassifier(n_neighbors=k,p=2, metric='euclidean')
+    classifier.fit(X_train, y_train)
+    y_pred = classifier.predict(X_test)
+
+    # confusion matrix
+    cm = confusion_matrix(y_test, y_pred)
+
+    # accuracy
+    accuracy = accuracy_score(y_test, y_pred)
+
+    return y_pred, cm, accuracy
+
+def knnWithOut():
+
+
+
+
 
