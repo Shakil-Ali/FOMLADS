@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np 
 import math
 
-from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
@@ -10,14 +9,17 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
 
 def knnWithSklearn():
-    df = pd.read_csv('FOMLADS Name.csv')
-
+    df_unshuffle = pd.read_csv('FOMLADS Name.csv')
+    df = df_unshuffle.sample(frac=1)
     # seperating row
     X = df.iloc[:,0:14]
     y = df.iloc[:,14]
 
+    train_pct_index = int(0.6 * len(X))
+    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
     # splitting data
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.4)
+    #X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0, test_size=0.4)
 
     # scaling data
     sc_X = StandardScaler()
@@ -40,8 +42,7 @@ def knnWithSklearn():
 
     return y_pred, cm, accuracy
 
-def knnWithOut():
-
+print(knnWithSklearn())
 
 
 
