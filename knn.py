@@ -7,13 +7,17 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
+from matplotlib import pyplot as plt
 
 def knn():
     df_unshuffle = pd.read_csv('FOMLADS Name.csv')
 
     # shuffling data 
     df = df_unshuffle.sample(frac=1)
-    
+
+    #just looking at basic stats of the data because why not?
+    desc = df.describe()
+
     # seperating columns 
     X = df.iloc[:,0:14]
     y = df.iloc[:,14]
@@ -41,11 +45,20 @@ def knn():
 
     # confusion matrix
     cm = confusion_matrix(y_test, y_pred)
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    cax = ax.matshow(cm)
+    plt.title('Confusion matrix of the classifier')
+    fig.colorbar(cax)
+    ax.set_xticklabels([''])
+    ax.set_yticklabels([''])
+    plt.xlabel('Predicted')
+    plt.ylabel('True')
+    conf_plot = plt.show()
 
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
-
-    return y_pred, cm, accuracy
+    return desc, y_pred, cm, accuracy, conf_plot
 
 print(knn())
 
