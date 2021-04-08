@@ -48,10 +48,10 @@ def knn(df):
     y_pred = classifier.predict(X_test)
 
     # confusion matrix
-    cm = confusion_matrix(y_test, y_pred)
+    con_matrix = confusion_matrix(y_test, y_pred)
     fig = plt.figure()
     ax = fig.add_subplot(111)
-    cax = ax.matshow(cm)
+    cax = ax.matshow(con_matrix)
     plt.title('Confusion matrix of the classifier')
     fig.colorbar(cax)
     ax.set_xticklabels([''])
@@ -62,7 +62,7 @@ def knn(df):
 
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    print(desc, y_pred, cm, accuracy)
+    print(desc, y_pred, con_matrix, accuracy)
 
 
 
