@@ -7,6 +7,7 @@ def main():
     df = prepare_data('data/wine.data')
     # print(df.head())
     random_forest_classifier(df)
+    knn(df)
 
 if __name__ == "__main__":
     main()

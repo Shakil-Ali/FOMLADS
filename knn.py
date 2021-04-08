@@ -10,18 +10,21 @@ from sklearn.metrics import accuracy_score
 from matplotlib import pyplot as plt
 
 
-def knn():
-    df_unshuffle = pd.read_csv('FOMLADS Name.csv')
+def knn(df):
+    test_df = df.sample(frac=1)
 
-    # shuffling data 
-    df = df_unshuffle.sample(frac=1)
+    # Setting variable with columns    
+    X = test_df[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
+            'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
+            'proline']]
+    y = test_df['class']
 
     #just looking at basic stats to later prove why I used knn (for discussion)?
-    desc = df.describe()
+    desc = test_df.describe()
 
     # seperating columns 
-    X = df.iloc[:,0:14]
-    y = df.iloc[:,14]
+    X = test_df.iloc[:,0:14]
+    y = test_df.iloc[:,14]
 
     # splitting data without sklearn
     train_pct_index = int(0.6 * len(X))
@@ -61,8 +64,7 @@ def knn():
     accuracy = accuracy_score(y_test, y_pred)
     return desc, y_pred, cm, accuracy, conf_plot
 
-print(knn())
-
+print(knn(df))
 
 
 
