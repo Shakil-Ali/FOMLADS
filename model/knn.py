@@ -23,8 +23,8 @@ def knn(df):
     desc = test_df.describe()
 
     # seperating columns 
-    X = test_df.iloc[:,0:14]
-    y = test_df.iloc[:,14]
+    # X = test_df.iloc[:,0:14]
+    # y = test_df.iloc[:,14]
 
     # splitting data without sklearn
     train_pct_index = int(0.6 * len(X))
@@ -62,9 +62,7 @@ def knn(df):
 
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    return desc, y_pred, cm, accuracy, conf_plot
-
-print(knn(df))
+    print(desc, y_pred, cm, accuracy)
 
 
 
