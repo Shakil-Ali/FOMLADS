@@ -50,7 +50,7 @@ def box_whisker_plot(name, input_plot):
     return desc, plt.show()
 
 # uncomment the below line and fill in with title you want and  argument from the list (line 15-27); there is an example already filled in
-#print(box_whisker_plot('alcohol', df_alc))
+#print(box_whisker_plot('nonflavanoid_phenols', df_nonflav))
 
 
 
@@ -65,6 +65,6 @@ def density(plot):
     return plt.show()
 
 # uncomment the below line and fill in with argument from the list (line 15-27) ; there is an example already filled in
-#print(density(df_alc))
+#print(density(df_flav))
 
 
