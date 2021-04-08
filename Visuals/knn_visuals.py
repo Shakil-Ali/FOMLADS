@@ -89,8 +89,8 @@ def k_value_graph():
     # plotting
     plt.scatter(x, y, marker="o", color="red")
 
-    plt.plot(x, y, 'ro')
-    plt.plot(x1, y1, 'go')
+    plt.plot(x, y, 'yo')
+    plt.plot(x1, y1, 'ro')
 
     plt.title("Different K-value Accuracies")
     plt.xlabel('K-value')
@@ -100,7 +100,6 @@ def k_value_graph():
     # uncomment below to save the figure as png
     #plt.savefig('knn_accuracies.png', bbox_inches='tight')
     
-
     plt.show()
 
 print(k_value_graph())
