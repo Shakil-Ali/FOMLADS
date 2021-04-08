@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 # im just importing from the csv file for now.  Was having trouble with dataframe but will replace it later
 df = pd.read_csv('FOMLADS Name.csv')
 
-# calling variables
+# THESE ARE THE VARIABLES THAT YOU WILL HAVE TO USE IN THE BELOW FUNCTIONS
 df_alc = df['alcohol']
 df_met = df['malic_acid']
 df_ash = df['ash']
