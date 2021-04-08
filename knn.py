@@ -1,33 +1,15 @@
-from prepare_data import *
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import metrics
+import seaborn as sn
+import matplotlib.pyplot as plt
 
-from sklearn.neighbors import KNeighborsClassifier
+def random_forest_classifier(df):
+    X = df[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
+            'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
+            'proline']]
+    y = df['class']
 
-import math
-
-"""
-KNN does not work well with categorical data.  It can technically be done but ideally only with binary categories
- or categories that have a clear hierarchy (e.g. small, medium, large).  Categorical data such as workclass, country,
- race, marital status, etc confuse me in terms of preprocessing logic; I would need to convert to ONE HOT ENCODING or
- risk poor methods and do simple INTEGER ENCODING.  Would appreciate advice.   
-"""
-
-#checking category types
-def cateogires():
-    reduced_dataset = reduce_dataset()
-    reduced_types = reduced_dataset.dtypes
-    return reduced_types
-
-# declaring variables for classefier
-fulltrain_data = 6000
-group_num = 3
-
-#function for calculating k value by taking square root of rows in training set and rounding down.
-def find_k(train_data):
-    k = round(math.sqrt((train_data)))
-    return k
-
-# using k function for n_neighbors, number of age range groups (3) for p, and euclidean to measure distance
-classifier = KNeighborsClassifier(n_neighbors=find_k(fulltrain_data), p=group_num, metric='euclidean')
-
-print(cateogires())
+    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=0)
 
