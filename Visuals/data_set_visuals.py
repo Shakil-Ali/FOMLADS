@@ -65,6 +65,6 @@ def density(plot):
     return plt.show()
 
 # uncomment the below line and fill in with argument from the list (line 15-27) ; there is an example already filled in
-print(density(df_alc))
+#print(density(df_alc))
 
 
