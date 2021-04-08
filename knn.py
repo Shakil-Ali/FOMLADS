@@ -9,13 +9,14 @@ from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
 from matplotlib import pyplot as plt
 
+
 def knn():
     df_unshuffle = pd.read_csv('FOMLADS Name.csv')
 
     # shuffling data 
     df = df_unshuffle.sample(frac=1)
 
-    #just looking at basic stats of the data because why not?
+    #just looking at basic stats to later prove why I used knn (for discussion)?
     desc = df.describe()
 
     # seperating columns 
