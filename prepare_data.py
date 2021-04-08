@@ -5,10 +5,12 @@ import numpy as np
 
 
 def prepare_data(file):
-    data = pd.read_csv(file)
-    data.columns = ['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
-                    'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
-                    'proline']
+    data = pd.read_csv(file, names=['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium',
+                                    'total_phenols',
+                                    'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue',
+                                    'OD280/OD315',
+                                    'proline'])
+
     return data
 
 
