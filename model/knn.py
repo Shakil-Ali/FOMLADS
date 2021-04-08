@@ -62,7 +62,7 @@ def knn(df):
 
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    print(desc, y_pred, con_matrix, accuracy)
+    print(y_pred, con_matrix, accuracy)
 
 
 
