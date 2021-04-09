@@ -32,8 +32,6 @@ def main():
                 print("Choose which graph/stat to view")
                 print("****************************************")
                 print("input [1] to view Density Functions")
-                print("input [2] to view K Nearest neighbors")
-                print("input [3] to view data set")
                 print("****************************************")
                 stat_choice = int(input("Choice: "))
                 if stat_choice == 1:

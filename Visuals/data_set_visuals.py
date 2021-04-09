@@ -60,6 +60,7 @@ def box_whisker_plot(name, input_plot):
 def density():
     plt.style.use('dark_background')
     df = pd.read_csv('FOMLADS Name.csv')
+    print("****************************************")
     print("choose a density function")
     print("****************************************")
     print("input [1] to view Alcohol")
