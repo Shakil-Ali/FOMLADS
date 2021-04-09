@@ -23,6 +23,8 @@ def main():
         knn(df)
     elif choice == 3:
         print(df)
+    else: 
+        print("not a valid option")
 
 if __name__ == "__main__":
     main()
