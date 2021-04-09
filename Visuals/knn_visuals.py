@@ -83,19 +83,22 @@ def k_value_graph():
     y = [accuracymin1, accuracyplus, accuracyplus1, accuracyplus2, accuracyplus3]
     y1 = [accuracy]
 
-    plt.style.use('dark_background')
+    fig = plt.figure()
+
+    ax = fig.add_subplot(1,1,1)
+
 
     # plotting
-    plt.scatter(x, y, marker="o", color="red")
+    ax.scatter(x, y, marker="o", color="red")
+    ax.plot(x, y, 'yo')
+    ax.plot(x1, y1, 'ro', label='Optimal = sqrt(len(N))')
+    fig.suptitle('Different K-value Accuracies', fontsize=12)
+    ax.set_ylabel("Accuracy (%)")
+    ax.set_xlabel("K-value")
+    ax.set_xticklabels([1,9,20, 40,70,100])
 
-    plt.plot(x, y, 'yo')
-    plt.plot(x1, y1, 'ro')
+    ax.legend()
 
-    plt.title("Different K-value Accuracies")
-    plt.xlabel('K-value')
-    plt.ylabel("Accuracy (%)")
-    plt.xticks([1,9,20, 40,70,100])
-    plt.style.use('dark_background')
     # uncomment below to save the figure as png
     #plt.savefig('knn_accuracies.png', bbox_inches='tight')
     
