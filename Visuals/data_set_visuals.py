@@ -120,5 +120,4 @@ def density():
                  kde_kws = {'shade': True, 'linewidth': 3})
     return plt.show()
 
-
-
+#print(density())
