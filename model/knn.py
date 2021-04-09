@@ -56,11 +56,10 @@ def knn(df):
     ax.set_yticklabels([''])
     plt.xlabel('Predicted')
     plt.ylabel('True')
-    conf_plot = plt.show()
-
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
-    print(y_pred, con_matrix, accuracy)
+    print("prediction: ", y_pred, " accuracy: ", accuracy)
+    conf_plot = plt.show()
 
 
 

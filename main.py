@@ -18,7 +18,6 @@ def main():
         print("input [2] to view K Nearest neighbors")
         print("input [3] to view data set")
         print("input [4] to view data set statistics and graphs")
-        print("input [4] to view data set statistics and graphs")
         print("input [0] to exit menu")
         print("****************************************")
         choice = int(input("Selection: "))
@@ -45,6 +44,7 @@ def main():
                         return False
             elif choice == 0:
                 exit = 1
+                break
             else: 
                 print(str(choice) + " is not a valid option")
                 return False
