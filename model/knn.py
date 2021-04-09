@@ -11,6 +11,8 @@ from matplotlib import pyplot as plt
 
 
 def knn(df):
+
+    # shuffling data
     test_df = df.sample(frac=1)
 
     # Setting variable with columns
@@ -40,7 +42,7 @@ def knn(df):
     # getting k
     k = math.ceil((math.sqrt(len(y_test))))
 
-    #classify
+    #classify (professor confirmed we can use the sklearn classifier)
     classifier = KNeighborsClassifier(n_neighbors=k,p=2, metric='euclidean')
     classifier.fit(X_train, y_train)
     y_pred = classifier.predict(X_test)
@@ -58,6 +60,7 @@ def knn(df):
     plt.ylabel('True')
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
+
     print("prediction: ", y_pred, " accuracy: ", accuracy)
     conf_plot = plt.show()
 
