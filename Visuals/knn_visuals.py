@@ -14,18 +14,17 @@ def k_value_graph():
     df = df_pre.sample(frac=1)
 
     # seperating columns 
-    X = df.iloc[:,0:14]
+
+    # normalizing without sklearn (excluding 'Class" column)
+    X_non = df.iloc[:,0:14]
+    X =(X_non-X_non.mean())/X_non.std()    
+
     y = df.iloc[:,14]
 
     # splitting data without sklearn
     train_pct_index = int(0.6 * len(X))
     X_train, X_test = X[:train_pct_index], X[train_pct_index:]
     y_train, y_test = y[:train_pct_index], y[train_pct_index:]
-
-    # scaling data
-    sc_X = StandardScaler()
-    X_train = sc_X.fit_transform(X_train)
-    X_test = sc_X.transform(X_test)
 
     # getting k
     k = math.ceil((math.sqrt(len(y_test))))
