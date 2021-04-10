@@ -5,31 +5,32 @@ import numpy as np
 
 
 def prepare_data(file):
+    """
+    We are reading the file and creating a dataframe.
+    We are shuffling using 42. We MUST have a specific number so they can reproduce our results.
+    We are normalizing using --> (x-mu)/std
+    :param file:
+    :return X_train,X_test,y_train,y_test: All the sets that we need to run our model and find accuracy.
+    """
     data = pd.read_csv(file, names=['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium',
                                     'total_phenols',
                                     'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue',
                                     'OD280/OD315',
                                     'proline'])
+    # Shuffling data using number 42 so we can reproduce the results.
+    data = shuffle(data, random_state=42)
+    X_non = data[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
+                     'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
+                     'proline']]
 
-    return data
+    # normalizing without sklearn (excluding 'Class" column)
+    X = (X_non - X_non.mean()) / X_non.std()
 
+    y = data['class']
 
-def divide_dataset(df):
-    """
-    After reduce and shuffle the dataset we have to divide to three datasets: train_portion, valid_portion, test_portion
-    train_portion = 0.6 of dataset
-    valid_portion = 0.2 of dataset
-    test_portion = 0.2 of dataset
-    We reducing the data to improve performance.
-    Returns
-    -------
-    3 dataframes: train,validate, test
+    # splitting data without sklearn
+    train_pct_index = int(0.6 * len(X))
+    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
 
-    """
-
-    df = shuffle(df, random_state=42)
-    train_portion = .6
-    test_portion = .2
-    return np.split(df,
-                    [int(train_portion * len(df)),
-                     int((train_portion + test_portion) * len(df))])
+    return X_train,X_test,y_train,y_test
