@@ -8,23 +8,27 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import f1_score
 from sklearn.metrics import accuracy_score
 from matplotlib import pyplot as plt
+from prepare_data import prepare_data
 
-def k_value_graph():
-    df_pre = pd.read_csv('FOMLADS Name.csv')
-    df = df_pre.sample(frac=1)
 
-    # seperating columns 
+def k_value_graph(file):
+    # df_pre = pd.read_csv('FOMLADS Name.csv')
+    # df = df_pre.sample(frac=1)
 
-    # normalizing without sklearn (excluding 'Class" column)
-    X_non = df.iloc[:,0:14]
-    X =(X_non-X_non.mean())/X_non.std()    
+    # # seperating columns 
 
-    y = df.iloc[:,14]
+    # # normalizing without sklearn (excluding 'Class" column)
+    # X_non = df.iloc[:,0:14]
+    # X =(X_non-X_non.mean())/X_non.std()    
 
-    # splitting data without sklearn
-    train_pct_index = int(0.6 * len(X))
-    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
-    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+    # y = df.iloc[:,14]
+
+    # # splitting data without sklearn
+    # train_pct_index = int(0.6 * len(X))
+    # X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+    # y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+    X_train, X_test, y_train, y_test = prepare_data(file)
+
 
     # getting k
     k = math.ceil((math.sqrt(len(y_test))))
