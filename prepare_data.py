@@ -1,7 +1,5 @@
-from sklearn.datasets import load_wine
-from sklearn.utils import shuffle
 import pandas as pd
-import numpy as np
+from sklearn.utils import shuffle
 
 
 def prepare_data(file):
@@ -20,8 +18,8 @@ def prepare_data(file):
     # Shuffling data using number 42 so we can reproduce the results.
     data = shuffle(data, random_state=42)
     X_non = data[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
-                     'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
-                     'proline']]
+                  'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
+                  'proline']]
 
     # normalizing without sklearn (excluding 'Class" column)
     X = (X_non - X_non.mean()) / X_non.std()
@@ -33,4 +31,4 @@ def prepare_data(file):
     X_train, X_test = X[:train_pct_index], X[train_pct_index:]
     y_train, y_test = y[:train_pct_index], y[train_pct_index:]
 
-    return X_train,X_test,y_train,y_test
+    return X_train, X_test, y_train, y_test

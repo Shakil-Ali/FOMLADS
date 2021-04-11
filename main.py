@@ -1,6 +1,6 @@
-# from FOMLADS.model.random_forest import random_forest_classifier
+from model.random_forest import random_forest_classifier
 # from FOMLADS.Visuals.data_set_visuals import density
-# from FOMLADS.model.knn import knn
+from model.knn import knn
 from model.lda import lda
 import sys
 
@@ -23,10 +23,16 @@ def main(dataset, model):
     # random_forest_classifier(df)
     # knn(df)
     # Here we have to add all the other models with the same way
+    if model == 'random_forest':
+        random_forest_classifier(dataset)
+    if model == 'knn':
+        knn(dataset)
     if model == 'lda':
         lda(dataset)
     if model == 'all':
         lda(dataset)
+        knn(dataset)
+        random_forest_classifier(dataset)
         # here we have to add all the other models
 
 
