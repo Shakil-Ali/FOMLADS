@@ -1,4 +1,6 @@
 import math
+import pandas as pd 
+import numpy as np
 
 from matplotlib import pyplot as plt
 from plot.plotting_functions import plot_confusion_matrix
@@ -20,8 +22,10 @@ def knn(file):
     plot_confusion_matrix(y_test, y_pred, 'KNN')
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
+    accuracy_NoSkLearn = np.sum(np.equal(y_test,y_pred))/len(y_test)
     f1 = f1_score(y_test, y_pred, average="macro")
 
-    print("KNN Accuracy: ", accuracy)
+    print("KNN Accuracy with Sklearn: ", accuracy)
+    print("KNN Accuracy without Sklearn: ", accuracy_NoSkLearn)
     print("KNN f1 score: ", f1)
     conf_plot = plt.show()
