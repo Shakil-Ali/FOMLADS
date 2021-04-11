@@ -3,7 +3,7 @@ import math
 from matplotlib import pyplot as plt
 from plot.plotting_functions import plot_confusion_matrix
 from prepare_data import prepare_data
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score, precision_score
 from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -20,6 +20,8 @@ def knn(file):
     plot_confusion_matrix(y_test, y_pred, 'KNN')
     # accuracy
     accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred, average="macro")
 
     print("KNN Accuracy: ", accuracy)
+    print("KNN f1 score: ", f1)
     conf_plot = plt.show()
