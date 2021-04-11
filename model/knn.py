@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np 
 import math
+from prepare_data import prepare_data
 
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
@@ -10,29 +11,29 @@ from sklearn.metrics import accuracy_score
 from matplotlib import pyplot as plt
 
 
-def knn(df):
+def knn(file):
 
     # shuffling data
-    test_df = df.sample(frac=1)
+    # test_df = df.sample(frac=1)
 
     # Setting variable with columns
-    X_non = test_df[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
-            'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
-            'proline']]
+    # X_non = test_df[['alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium', 'total_phenols',
+    #         'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue', 'OD280/OD315',
+    #         'proline']]
     
     # normalizing without sklearn (excluding 'Class" column)
-    X =(X_non-X_non.mean())/X_non.std()    
+    # X =(X_non-X_non.mean())/X_non.std()    
 
-    y = test_df['class']
+    # y = test_df['class']
 
     #just looking at basic stats to later prove why I used knn (for discussion)?
-    desc = test_df.describe()
+    X_train, X_test, y_train, y_test = prepare_data(file)
 
 
     # splitting data without sklearn
-    train_pct_index = int(0.6 * len(X))
-    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
-    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+    # train_pct_index = int(0.6 * len(X))
+    # X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+    # y_train, y_test = y[:train_pct_index], y[train_pct_index:]
 
 #     # scaling data with sklearn 
 #     sc_X = StandardScaler()
