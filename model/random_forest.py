@@ -4,16 +4,10 @@ from prepare_data import prepare_data
 from sklearn import metrics
 from sklearn import tree
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import StandardScaler
 
 
 def random_forest_classifier(file):
     X_train, X_test, y_train, y_test = prepare_data(file)
-
-    # Scaling data
-    sc_X = StandardScaler()
-    X_train = sc_X.fit_transform(X_train)
-    X_test = sc_X.transform(X_test)
 
     # Fitting the data
     clf = RandomForestClassifier(n_estimators=100)
