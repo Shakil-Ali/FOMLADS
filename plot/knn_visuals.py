@@ -12,21 +12,7 @@ from prepare_data import prepare_data
 
 
 def k_value_graph(file):
-    # df_pre = pd.read_csv('FOMLADS Name.csv')
-    # df = df_pre.sample(frac=1)
-
-    # # seperating columns 
-
-    # # normalizing without sklearn (excluding 'Class" column)
-    # X_non = df.iloc[:,0:14]
-    # X =(X_non-X_non.mean())/X_non.std()    
-
-    # y = df.iloc[:,14]
-
-    # # splitting data without sklearn
-    # train_pct_index = int(0.6 * len(X))
-    # X_train, X_test = X[:train_pct_index], X[train_pct_index:]
-    # y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+  
     X_train, X_test, y_train, y_test = prepare_data(file)
 
 
@@ -108,6 +94,5 @@ def k_value_graph(file):
     
     plt.show()
 
-print(k_value_graph())
 
 
