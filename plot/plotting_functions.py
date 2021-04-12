@@ -2,15 +2,14 @@ import matplotlib.pyplot as plt
 import seaborn as sn
 import pandas as pd
 
-def plot_confusion_matrix(y_test, y_pred, name):
-    confusion_matrix = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
-    sn.heatmap(confusion_matrix, annot=True)
+
+def plot_confusion_matrix(cm,name):
+    sn.heatmap(cm, annot=True)
     plt.title('Confusion matrix of the ' + name + ' classifier')
     plt.show()
 
 
-def scatter_plot(X_lda,y,name):
-
+def scatter_plot(X_lda, y, name):
     plt.xlabel('LD1')
     plt.ylabel('LD2')
     plt.title(name)
@@ -23,5 +22,3 @@ def scatter_plot(X_lda,y,name):
         edgecolors='b'
     )
     plt.show()
-
-
