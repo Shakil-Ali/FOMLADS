@@ -1,8 +1,6 @@
 import math
 import pandas as pd 
 import numpy as np
-from sklearn.metrics import confusion_matrix
-
 
 from matplotlib import pyplot as plt
 from plot.plotting_functions import plot_confusion_matrix
@@ -28,7 +26,8 @@ def knn(file):
     accuracy_NoSkLearn = np.sum(np.equal(y_test,y_pred))/len(y_test)
 
     # plotting confusion again to get precision and recall
-    cm = confusion_matrix(y_test, y_pred)
+    # cm = confusion_matrix(y_test, y_pred)
+    cm = pd.crosstab(y_test, y_pred, rownames=['Actual'], colnames=['Predicted'])
 
     # Without Sklearn - getting recall and precision from confusion matrix 
     recall_NoSum = np.diag(cm) / np.sum(cm, axis = 1)
