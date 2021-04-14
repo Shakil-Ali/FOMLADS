@@ -10,6 +10,19 @@ def prepare_data(file):
     :param file:
     :return X_train,X_test,y_train,y_test: All the sets that we need to run our model and find accuracy.
     """
+    X, data = normalized_df(file)
+
+    y = data['class']
+
+    # splitting data without sklearn
+    train_pct_index = int(0.6 * len(X))
+    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+
+    return X_train, X_test, y_train, y_test
+
+
+def normalized_df(file):
     data = pd.read_csv(file, names=['class', 'alcohol', 'malic_acid', 'ash', 'alcalinity_of_ash', 'magnesium',
                                     'total_phenols',
                                     'flavanoids', 'non_flavanoids_phenols', 'proanthocyanins', 'color_intensity', 'hue',
@@ -23,12 +36,4 @@ def prepare_data(file):
 
     # normalizing without sklearn (excluding 'Class" column)
     X = (X_non - X_non.mean()) / X_non.std()
-
-    y = data['class']
-
-    # splitting data without sklearn
-    train_pct_index = int(0.6 * len(X))
-    X_train, X_test = X[:train_pct_index], X[train_pct_index:]
-    y_train, y_test = y[:train_pct_index], y[train_pct_index:]
-
-    return X_train, X_test, y_train, y_test
+    return X, data

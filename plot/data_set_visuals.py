@@ -1,64 +1,30 @@
 import pandas as pd
-import numpy as np 
-import math
 import seaborn as sns
+from prepare_data import normalized_df
 
-from sklearn.preprocessing import StandardScaler
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import f1_score
-from sklearn.metrics import accuracy_score
 from matplotlib import pyplot as plt
 
+
 # im just importing from the csv file for now.  Was having trouble with dataframe but will replace it later
-df = pd.read_csv('FOMLADS Name.csv')
 
-# THESE ARE THE VARIABLES THAT YOU WILL HAVE TO USE IN THE BELOW FUNCTIONS
-df_alc = df['alcohol']
-df_met = df['malic_acid']
-df_ash = df['ash']
-df_alcalin = df['alcalinity_of_ash']
-df_mag = df['magnesium']
-df_phen = df['total_phenols']
-df_flav = df['flavanoids']
-df_nonflav = df['nonflavanoid_phenols']
-df_proan = df['proanthocyanins']
-df_color = df['color_intensity']
-df_hue = df['hue']
-df_od = df['od280/od315_of_diluted_wines']
-df_prol = df['proline']
+def print_density(file):
+    df, X = normalized_df(file)
 
+    df_alc = df['alcohol']
+    print(df_alc)
+    df_met = df['malic_acid']
+    df_ash = df['ash']
+    df_alcalin = df['alcalinity_of_ash']
+    df_mag = df['magnesium']
+    df_phen = df['total_phenols']
+    df_flav = df['flavanoids']
+    df_nonflav = df['non_flavanoids_phenols']
+    df_proan = df['proanthocyanins']
+    df_color = df['color_intensity']
+    df_hue = df['hue']
+    df_od = df['OD280/OD315']
+    df_prol = df['proline']
 
-# **************************************************
-# THIS IS A FUNCTION THAT SHOWS BOX AND WHISKER PLOT BELOW
-# **************************************************
-def box_whisker_plot(name, input_plot):
-
-    desc = df.describe()
-    # creating figure
-    fig = plt.figure(1, figsize=(5, 5))
-
-    # alcohol plot
-    ax = fig.add_subplot(111)
-    ax.title.set_text(name)
-
-    bp = ax.boxplot(input_plot)
-
-    # uncomment below to save the plots for our report
-    # fig.savefig('BoxWhiskerPlot.png', bbox_inches='tight')
-
-    return desc, plt.show()
-
-# uncomment the below line and fill in with title you want and  argument from the list (line 15-27); there is an example already filled in
-#print(box_whisker_plot('nonflavanoid_phenols', df_nonflav))
-
-
-
-# **************************************************
-# THIS IS A FUNCTION THAT SHOWS THE DENSITIES BELOW
-# **************************************************
-def density():
-    df = pd.read_csv('FOMLADS Name.csv')
     print("****************************************")
     print("choose a density function")
     print("****************************************")
@@ -78,45 +44,70 @@ def density():
     print("****************************************")
     choice = int(input("Choice: "))
     print("****************************************")
+    fig = plt.figure(1, figsize=(5, 5))
     if choice == 1:
-        sns.distplot(df_alc, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_alc, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+        print(box_whisker_plot('nonflavanoid_phenols', df_alc))
     elif choice == 2:
-        sns.distplot(df_met, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_met, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+        print(box_whisker_plot('nonflavanoid_phenols', df_met))
     elif choice == 3:
-        sns.distplot(df_ash, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_ash, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+        print(box_whisker_plot('nonflavanoid_phenols', df_ash))
     elif choice == 4:
-        sns.distplot(df_alcalin, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_alcalin, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+        print(box_whisker_plot('nonflavanoid_phenols', df_alcalin))
     elif choice == 5:
-        sns.distplot(df_mag, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_mag, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+        print(box_whisker_plot('nonflavanoid_phenols', df_mag))
     elif choice == 6:
-        sns.distplot(df_phen, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_phen, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 7:
-        sns.distplot(df_flav, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_flav, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 8:
-        sns.distplot(df_nonflav, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_nonflav, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 9:
-        sns.distplot(df_proan, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_proan, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 10:
-        sns.distplot(df_color, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_color, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 11:
-        sns.distplot(df_hue, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_hue, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 12:
-        sns.distplot(df_od, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
+        sns.distplot(df_od, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
     elif choice == 13:
-        sns.distplot(df_prol, hist = False, kde = True,
-                 kde_kws = {'shade': True, 'linewidth': 3})
-    return plt.show()
+        sns.distplot(df_prol, hist=False, kde=True,
+                     kde_kws={'shade': True, 'linewidth': 3})
+    plt.show()
 
-#print(density())
+
+# **************************************************
+# THIS IS A FUNCTION THAT SHOWS BOX AND WHISKER PLOT BELOW
+# **************************************************
+def box_whisker_plot(name, input_plot):
+    fig = plt.figure(1, figsize=(5, 5))
+
+    # alcohol plot
+    ax = fig.add_subplot(111)
+    ax.title.set_text(name)
+
+    ax.boxplot(input_plot)
+
+    # uncomment below to save the plots for our report
+    # fig.savefig('BoxWhiskerPlot.png', bbox_inches='tight')
+
+    plt.show()
+
+
+

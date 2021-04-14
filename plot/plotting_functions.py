@@ -10,8 +10,7 @@ def plot_confusion_matrix(cm,name):
 
 
 def scatter_plot(X_lda, y, name):
-    plt.xlabel('LD1')
-    plt.ylabel('LD2')
+
     plt.title(name)
     plt.scatter(
         X_lda[:, 0],
@@ -20,5 +19,6 @@ def scatter_plot(X_lda, y, name):
         cmap='rainbow',
         alpha=0.7,
         edgecolors='b'
+
     )
     plt.show()

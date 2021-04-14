@@ -1,5 +1,5 @@
 from model.random_forest import random_forest_classifier
-# from FOMLADS.Visuals.data_set_visuals import density
+from plot.data_set_visuals import print_density
 from model.knn import knn
 from model.lda import lda
 import sys
@@ -17,12 +17,7 @@ def main(dataset, model):
     :param dataset: the path of the dataset:
     :param model: name of the model we gonna use(knn, lda, etc.)
     """
-    # df = prepare_data('data/wine.data')
-    # normalized_df=(df-df.mean())/df.std()
-    # print(df.head())
-    # random_forest_classifier(df)
-    # knn(df)
-    # Here we have to add all the other models with the same way
+
     if model == 'random_forest':
         random_forest_classifier(dataset)
     if model == 'knn':
@@ -33,7 +28,9 @@ def main(dataset, model):
         lda(dataset)
         knn(dataset)
         random_forest_classifier(dataset)
-        # here we have to add all the other models
+    if model == 'density':
+        print_density(dataset)
+
 
 
 if __name__ == "__main__":
