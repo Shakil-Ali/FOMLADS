@@ -20,3 +20,5 @@ def knn(file):
     plot_confusion_matrix(cm, 'KNN')
     k_value_graph(X_train, y_train, X_test, y_test)
     print_evaluation_scores('KNN', cm, y_test, y_pred)
+
+jacob msms mssmsmsm
