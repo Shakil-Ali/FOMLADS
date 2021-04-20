@@ -2,6 +2,7 @@ from model.random_forest import random_forest_classifier
 from plot.data_set_visuals import print_density
 from model.knn import knn
 from model.lda import lda
+from model.log_regression import log_reg
 import sys
 
 """SOS!!!! not so SOS now that I have your attention please check that I created a folder plot
@@ -24,6 +25,8 @@ def main(dataset, model):
         knn(dataset)
     if model == 'lda':
         lda(dataset)
+    if model == 'log_reg':
+        log_reg(dataset)
     if model == 'all':
         lda(dataset)
         knn(dataset)
