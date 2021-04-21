@@ -2,7 +2,7 @@ from model.random_forest import random_forest_classifier
 from plot.data_set_visuals import print_density
 from model.knn import knn
 from model.lda import lda
-from model.log_regression import log_reg2
+from model.log_regression import log_reg
 from plot.plotting_functions import data_stats
 import sys
 
@@ -11,6 +11,8 @@ inside the plot folder I have the function to plotting the confusion matrix
 Please move everything tha we have inside on folder Visual inside to plot folder.
 
 """
+
+
 def main(dataset, model):
     """
     We have to option to run this function in two ways:
@@ -27,8 +29,9 @@ def main(dataset, model):
     if model == 'lda':
         lda(dataset)
     if model == 'log_reg':
-        log_reg2(dataset)
+        log_reg(dataset)
     if model == 'all':
+        log_reg(dataset)
         lda(dataset)
         knn(dataset)
         random_forest_classifier(dataset)
@@ -37,9 +40,9 @@ def main(dataset, model):
 
 
 if __name__ == "__main__":
+
     # Using sys we can get arguments from command line
     if len(sys.argv) <= 2:
-        log_reg2('data/wine.data')
         print("Please provide the correct arguments. python main.py <dataset> <model name> ")
         sys.exit(1)
     arguments = len(sys.argv) - 1
