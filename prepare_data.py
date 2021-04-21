@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.utils import shuffle
-
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 def prepare_data(file):
     """
@@ -11,7 +11,6 @@ def prepare_data(file):
     :return X_train,X_test,y_train,y_test: All the sets that we need to run our model and find accuracy.
     """
     X, data = normalized_df(file)
-
     y = data['class']
 
     # splitting data without sklearn
@@ -37,3 +36,7 @@ def normalized_df(file):
     # normalizing without sklearn (excluding 'Class" column)
     X = (X_non - X_non.mean()) / X_non.std()
     return X, data
+
+
+
+
