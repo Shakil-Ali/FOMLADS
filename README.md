@@ -16,7 +16,7 @@ The required libraries to run the code:
 * seaborn
 * numpy
 * matplotlib
-* pd
+* pandas
 
 ## Structure
 The structure of the repository is as follows:
