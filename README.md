@@ -4,6 +4,7 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Libraries](#libraries)
+* [Structure](#structure)
 * [Setup](#setup)
 * [Running Code](#running-code)
 
@@ -17,8 +18,19 @@ Project is created with:
 	
 ## Libraries
 The required libraries to run the code:
-* pip install scikit-learn
-* 
+* scikit-learn
+* seaborn
+* numpy
+* matplotlib
+* pd
+
+## Structure
+The structure of the repository is as follows:
+* Models - directory containing the classification models (Random Forest, KNN, LDA, Logistic Regression) python files 
+* Evaluation - directory 
+* Plots- directory
+** dhhd
+* Test
 
 ## Setup
 To begin running this project, 'cd' to repository first:
@@ -28,4 +40,8 @@ $ cd FOMLADS
 ```
 
 ## Running Code
+
+```
+$ cd FOMLADS
+```
 
