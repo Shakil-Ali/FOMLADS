@@ -3,6 +3,7 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
+* [Libraries](#libraries)
 * [Setup](#setup)
 * [Running Code](#running-code)
 
@@ -11,15 +12,19 @@ This is the repository for Group 1's Assessment Code (Foundations of Machine Lea
 	
 ## Technologies
 Project is created with:
-* Python version: 12.3
+* Python version: 3
+* 
 	
+## Libraries
+The required libraries to run the code:
+* pip install scikit-learn
+* 
+
 ## Setup
-To run this project, install it locally using npm:
+To begin running this project, 'cd' to repository first:
 
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+$ cd FOMLADS
 ```
 
 ## Running Code
