@@ -43,6 +43,7 @@ if __name__ == "__main__":
 
     # Using sys we can get arguments from command line
     if len(sys.argv) <= 2:
+        lda('data/wine.data')
         print("Please provide the correct arguments. python main.py <dataset> <model name> ")
         sys.exit(1)
     arguments = len(sys.argv) - 1

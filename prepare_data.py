@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.utils import shuffle
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-
+import numpy as np
 def prepare_data(file):
     """
     We are reading the file and creating a dataframe.
@@ -18,7 +18,16 @@ def prepare_data(file):
     X_train, X_test = X[:train_pct_index], X[train_pct_index:]
     y_train, y_test = y[:train_pct_index], y[train_pct_index:]
 
-    return X_train, X_test, y_train, y_test
+    y_tests = []
+    x_tests = []
+    resultX = np.array_split(X, 5)
+    resultY = np.array_split(y, 5)
+    for part in resultX:
+        x_tests.append(part)
+    for part in resultY:
+        y_tests.append(part)
+
+    return X_train, X_test, y_train,  y_test,x_tests,y_tests
 
 
 def normalized_df(file):

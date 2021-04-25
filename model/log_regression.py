@@ -1,14 +1,15 @@
 import numpy as np
 import pandas as pd
-from plot.plotting_functions import plot_confusion_matrix
-from evaluation.evaluation import calculate_cm, print_evaluation_scores
 from scipy.optimize import fmin_tnc
 
+from evaluation.evaluation import calculate_cm, print_evaluation_scores
+from plot.plotting_functions import plot_confusion_matrix
 from prepare_data import prepare_data
 
 
 def log_reg(file):
-    X_train, X_test, y_train, y_test = prepare_data(file)
+    k = 5
+    X_train, X_test, y_train, y_test, x_tests, y_tests = prepare_data(file)
 
     X1 = np.c_[np.ones((X_train.shape[0], 1)), X_train]
     X2 = np.c_[np.ones((X_test.shape[0], 1)), X_test]
@@ -49,11 +50,16 @@ def log_reg(file):
     for i in range(0, len(Y2)):
         if y_hat2[i] == Y2.flatten()[i]:
             accuracy_test_data += 1
+
     transformed_predict = np.array(y_hat2).reshape(len(y_hat2), )
     transformed_y = np.array(Y2).reshape(len(Y2), )
     cm = calculate_cm(transformed_y, transformed_predict)
     plot_confusion_matrix(cm, 'Log Regression')
     print_evaluation_scores('Log Regression', cm, transformed_y, transformed_predict)
+    accuracies = []
+    for i in range(0, k):
+        accuracies.append(np.sum(np.equal(transformed_y, transformed_predict)) / len(transformed_y))
+    print("Logistic Regression cross validation accuracies:", accuracies)
 
 
 def y_change(y, cl):
