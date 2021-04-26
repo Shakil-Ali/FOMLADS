@@ -45,26 +45,23 @@ def print_density(file):
     choice = int(input("Choice: "))
     print("****************************************")
     fig = plt.figure(1, figsize=(5, 5))
+
+
     if choice == 1:
         sns.distplot(df_alc, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
-        print(box_whisker_plot('nonflavanoid_phenols', df_alc))
     elif choice == 2:
         sns.distplot(df_met, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
-        print(box_whisker_plot('nonflavanoid_phenols', df_met))
     elif choice == 3:
         sns.distplot(df_ash, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
-        print(box_whisker_plot('nonflavanoid_phenols', df_ash))
     elif choice == 4:
         sns.distplot(df_alcalin, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
-        print(box_whisker_plot('nonflavanoid_phenols', df_alcalin))
     elif choice == 5:
         sns.distplot(df_mag, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
-        print(box_whisker_plot('nonflavanoid_phenols', df_mag))
     elif choice == 6:
         sns.distplot(df_phen, hist=False, kde=True,
                      kde_kws={'shade': True, 'linewidth': 3})
@@ -107,7 +104,6 @@ def box_whisker_plot(name, input_plot):
     # uncomment below to save the plots for our report
     # fig.savefig('BoxWhiskerPlot.png', bbox_inches='tight')
 
-    plt.show()
 
 
 
