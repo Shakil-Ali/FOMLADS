@@ -62,3 +62,9 @@ To run classification using just 'Logistic Regression', run the following comman
 $ python main.py data/wine.data log_reg
 ```
 
+To return the density functions of the the dataset features, run the following command:
+```
+$ python main.py data/wine.data density
+```
+
+
