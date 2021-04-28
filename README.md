@@ -66,5 +66,10 @@ To return the density functions of the the dataset features, run the following c
 ```
 $ python main.py data/wine.data density
 ```
+---
+**NOTE**
 
+The code should take no longer than a minute to run, in most cases it runs in under 30 seconds. Close each visualisation to allow the running of the next model. 
+
+---
 
