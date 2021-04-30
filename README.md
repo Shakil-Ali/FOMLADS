@@ -2,7 +2,6 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Libraries](#libraries)
 * [Structure](#structure)
 * [Setup](#setup)
 * [Running Code](#running-code)
@@ -10,14 +9,6 @@
 ## General info
 This is the repository for Group 1's Assessment Code (Foundations of Machine Learning and Data Science).
 	
-## Libraries
-The required libraries to run the code:
-* scikit-learn
-* seaborn
-* numpy
-* matplotlib
-* pandas
-
 ## Structure
 The structure of the repository is as follows:
 * data - this directory contains the (wine) dataset file - wine.data
