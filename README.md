@@ -28,12 +28,16 @@ The structure of the repository is as follows:
 * prepare_data.py - this is the data preparation file which prepares the dataset into test and training
 
 ## Setup
-After cloning the repository, to begin running this project, 'cd' to repository:
 
+To install required libraries, do:
+```
+conda create --name myenv --file dependencies.txt
+```
+
+After cloning the repository, to begin running this project, 'cd' to repository:
 ```
 $ cd FOMLADS
 ```
-NOTE: conda should be activated with the appropriate libraries installed
 
 ## Running Code
 
