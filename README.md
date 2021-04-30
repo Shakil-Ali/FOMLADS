@@ -17,6 +17,7 @@ The structure of the repository is as follows:
 * plot - this directory contains files for the plots of the models - data_set_visuals.py, knn_visuals.py, plotting_functions.py
 * main.py - this is the main file containing the options for running the multiple models
 * prepare_data.py - this is the data preparation file which prepares the dataset into test and training
+* dependencies.txt - contains the libraries required to run our code
 
 ## Setup
 
